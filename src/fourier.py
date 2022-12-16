@@ -3,13 +3,13 @@ import pickle
 import scipy.stats as stats
 
 class FourierTransform(object):
-    """Class for computing fourier transforms and power spectra for a set of 2D images, passed as a list of 1D matrices. all images must be of same length and the lengths must be perfect squares."""
+	"""Class for computing fourier transforms and power spectra for a set of 2D images, passed as a list of 1D matrices. all images must be of same length and the lengths must be perfect squares."""
 	def __init__(self, images):
         	self.images = images
         	self.dims = len(images[0])
 
 	def compute_fourier_transform(self):
-       		"""Function for computing fourier transform for each basis function."""
+		"""Function for computing fourier transform for each basis function."""
         	#get complex valued amplitudes of all Fourier components for each basis function
 		fourier_images = np.array([np.fft.fftn(self.images.reshape((self.dims,self.dims))) for self.dims in self.dims])
         	#square amplitudes to compute the variances (assuming mean amplitudes are 0 for each bf)
@@ -19,7 +19,7 @@ class FourierTransform(object):
 		self.fourier_amplitudes = fourier_amplitudes
 
     	def construct_wave_vector_array(self):
-        	"""Function for constructing array of wave vectors in k space"""
+		"""Function for constructing array of wave vectors in k space"""
 		kfreq = np.fft.fftfreq(self.dims)*self.dims
 		kfreq2D = np.meshgrid(kfreq,kfreq)
 		knrm = np.sqrt(kreq2D[0]**2+kfreq2D[1]**2)
